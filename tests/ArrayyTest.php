@@ -13,9 +13,9 @@ class ArrayyTest extends TestCase
     {
         $this->expectException(IndexOutOfRangeException::class);
 
-        $array = new Arrayy(1, Dummy::class);
-        $array->add(new Dummy());
-        $array->add(new Dummy());
+        $array = new Arrayy(1, Stringg::class);
+        $array->add(new Stringg());
+        $array->add(new Stringg());
 
     }
 
@@ -24,7 +24,7 @@ class ArrayyTest extends TestCase
         $this->expectException(InvalidTypeException::class);
 
         $array = new Arrayy(1, Stringg::class);
-        $array->add(new Dummy());
+        $array->add(new Integer(100));
     }
 
 
@@ -46,6 +46,5 @@ class ArrayyTest extends TestCase
             $this->assertEquals($string, $item);
         }
     }
-
 
 }
