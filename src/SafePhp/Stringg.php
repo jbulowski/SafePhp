@@ -3,10 +3,11 @@ declare(strict_types=1);
 
 namespace SafePhp;
 
+use SafePhp\Interfaces\SafePhpInterface;
 use ArrayAccess;
 use Iterator;
 
-class Stringg implements ArrayAccess, Iterator
+class Stringg implements SafePhpInterface, ArrayAccess, Iterator
 {
 
     /**
@@ -18,7 +19,7 @@ class Stringg implements ArrayAccess, Iterator
      * Stringg constructor.
      * @param string $string
      */
-    public function __construct(string $string)
+    public function __construct(string $string = '')
     {
         $this->chars = str_split($string);
     }
