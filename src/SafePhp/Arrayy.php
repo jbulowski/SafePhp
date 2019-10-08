@@ -32,7 +32,7 @@ class Arrayy implements ArrayAccess, Iterator
         if (count($args) > $capacity)
             throw new IndexOutOfRangeException(__CLASS__, $capacity);
 
-        $this->type = get_class((new $type));
+        $this->type = $type;
         $this->capacity = $capacity;
         $this->args = [];
 
@@ -84,6 +84,8 @@ class Arrayy implements ArrayAccess, Iterator
      * </p>
      * @return mixed Can return all value types.
      * @since 5.0.0
+     *
+     * TODO: Prevent setting types other than Arrayy
      */
     public function offsetGet($offset)
     {

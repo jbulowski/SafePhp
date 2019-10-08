@@ -27,8 +27,6 @@ class ArrayyTest extends TestCase
         $array->add(new Integer(100));
     }
 
-
-
     public function testArrayAccessable()
     {
         $string = new Stringg('Hello');
