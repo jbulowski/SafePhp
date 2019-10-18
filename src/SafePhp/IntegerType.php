@@ -23,7 +23,12 @@ abstract class IntegerType
      */
     public function __construct($value, $range_from, $range_to)
     {
-
+        /*
+         * InvalidArgumentException gets thrown only when uLong used
+         * because of php max integer value is bigger than uLong's max value
+         * so it gets casted to float, so we can't typehint $value as int
+         *
+         * */
         if (!filter_var($value, FILTER_VALIDATE_INT) || !filter_var($value, FILTER_VALIDATE_FLOAT))
             throw new InvalidArgumentException(static::class . ' only allows numeric values');
 
