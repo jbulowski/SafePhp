@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace SafePhp;
 
+use \InvalidArgumentException;
 use SafePhp\Exceptions\ArgumentOutOfRangeException;
 
 abstract class IntegerType
@@ -20,10 +21,14 @@ abstract class IntegerType
      * @param int|float $range_to
      * @throws ArgumentOutOfRangeException
      */
-    public function __construct(int $value, $range_from, $range_to)
+    public function __construct($value, $range_from, $range_to)
     {
+
+        if (!filter_var($value, FILTER_VALIDATE_INT) || !filter_var($value, FILTER_VALIDATE_FLOAT))
+            throw new InvalidArgumentException(static::class . ' only allows numeric values');
+
         if ($this->isInAllowedRange($value, $range_from, $range_to))
-            throw new ArgumentOutOfRangeException(get_called_class(), $range_from, $range_to);
+            throw new ArgumentOutOfRangeException(static::class, $range_from, $range_to);
 
         $this->value = $value;
     }
@@ -50,7 +55,7 @@ abstract class IntegerType
      * @param int|float $range_to
      * @return bool
      */
-    public function isInAllowedRange(int $value, $range_from, $range_to)
+    public function isInAllowedRange(int $value, $range_from, $range_to): bool
     {
         return ($range_from > $value || $value > $range_to);
     }

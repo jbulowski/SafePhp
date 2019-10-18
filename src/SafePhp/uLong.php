@@ -15,10 +15,10 @@ class uLong extends IntegerType implements SafePhpInterface
 
     /**
      * Integer constructor.
-     * @param int $value
+     * @param int|float $value
      * @throws ArgumentOutOfRangeException
      */
-    public function __construct(int $value)
+    public function __construct($value)
     {
         parent::__construct($value, self::RANGE_FROM, self::RANGE_TO);
     }
